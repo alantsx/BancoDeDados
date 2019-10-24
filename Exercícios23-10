@@ -1,0 +1,75 @@
+/* Lógico_1: */
+//Questão 1
+
+CREATE TABLE Funcionario (
+    Nome_fun varchar(40),
+	matricula_fun int identity(1,1) PRIMARY KEY
+);
+
+drop table Dependente
+
+CREATE TABLE Dependente (
+    id int identity(1,1) PRIMARY KEY,
+	cod_fun int,
+    Nome_dep varchar(40)
+);
+
+//Preparação
+
+select * from Funcionario
+insert into Funcionario (Nome_fun)
+values ('Funcionario1'), ('Funcionario2'), ('Funcionario3'), ('Funcionario4') 
+
+insert into Dependente (Nome_dep, cod_fun)
+values ('Angelo', 2), ('Jeremias',2), ('Roberto', 1), ('Missanga', 3), ('Josileia', 4), ('Malaquias', 4), ('Coentrao', 4), ('Lalaland', 4)
+
+//Questão 2
+select Nome_fun, Nome_dep from Funcionario, Dependente
+where matricula_fun = cod_fun
+
+//Questão 3
+select count(Nome_dep) as Dependentes, Nome_fun from Dependente, Funcionario
+where matricula_fun = cod_fun
+group by Nome_fun
+
+//Questão 4
+
+/* Lógico_2: */
+CREATE TABLE Veiculo (
+    id_veic int identity(1,1) PRIMARY KEY,
+	Placa varchar(8),
+    Marca varchar(40),
+    Modelo varchar(20),
+    Cor varchar(20),
+    IPVA float
+);
+
+CREATE TABLE Proprietario (
+    CODIGO int identity(1,1) PRIMARY KEY,
+    nome varchar(40),
+    cpf varchar(12)
+);
+
+drop table Proprietario
+
+alter table Proprietario
+alter column cpf varchar(12)
+
+alter table Veiculo
+add cod_pro int
+
+insert into Veiculo (Placa, Marca, Modelo, Cor, IPVA, cod_pro)
+values ('LPM-5810', 'Audi', 'tt', 'Vermelho', 2340.78, 1), ('JTH-7463', 'Nissan', '370z', 'Prata', 2120.24, 2)
+
+insert into Proprietario (nome, cpf)
+values ('Malaquias', 11122233345), ('Jeremias', 99988877745)
+
+//Questão 5
+select nome, Placa, Marca, Modelo, Cor, IPVA from Veiculo, Proprietario
+where cod_pro = CODIGO
+
+//Questão 6
+select sum(IPVA) as Soma_IPVA, cpf from Veiculo, Proprietario
+where cod_pro = CODIGO
+group by cpf
+

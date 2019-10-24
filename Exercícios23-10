@@ -73,3 +73,32 @@ select sum(IPVA) as Soma_IPVA, cpf from Veiculo, Proprietario
 where cod_pro = CODIGO
 group by cpf
 
+//Questão 7
+/* Lógico_3: */
+
+CREATE TABLE DISCIPLINA (
+    CODIGO int PRIMARY KEY,
+	codigo_pro int,
+    Nome_dis varchar(40)
+);
+
+CREATE TABLE PROFESSOR (
+    Matricula int PRIMARY KEY,
+    Nome_pro varchar(40)
+);
+
+
+insert into DISCIPLINA (CODIGO, codigo_pro, Nome_dis)
+values (1,1, 'Historia da Arte'), (2,1, 'Arte Contemporanea'), (3,2, 'Engenharia de Software')
+
+insert into PROFESSOR (Matricula, Nome_pro)
+values (1, 'Maloqueiro'), (2, 'Jeringonssa')
+
+
+//Questão 8
+select Nome_pro, Nome_dis from DISCIPLINA, PROFESSOR
+where codigo_pro = Matricula
+
+//Questão 9
+select Nome_pro, count(CODIGO) from PROFESSOR, DISCIPLINA
+where codigo_pro = Matricula

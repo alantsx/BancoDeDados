@@ -1,0 +1,34 @@
+/* 10-15 */
+
+
+// Questão 10
+
+CREATE TABLE Funcionario (
+    MATRICULA int PRIMARY KEY,
+    salario float,
+    nomef varchar(40),
+    fk_Departamento_CODIGO int
+);
+
+CREATE TABLE Departamento (
+    CODIGO int PRIMARY KEY,
+    nomed varchar(40)
+);
+
+insert into Departamento (CODIGO, nomed)
+values (001, 'Financeiro'), (002, 'Vendas'), (003, 'TI')
+
+insert into Funcionario (MATRICULA, salario, nomef, fk_Departamento_CODIGO)
+values (123, 2576.24, 'Josue', 001), (143, 3423.56, 'Lindomar', 002),
+(353, 5839.23, 'Jeremias', 003), (394, 9395.23, 'Vaganundo', 003),
+(382, 4959.35, 'Rambo', 002), (392, 3068.20, 'Noveleiro', 003)
+
+// Questão 11
+
+select nomef, nomed from Funcionario, Departamento
+
+// Questão 12
+select count (*) as Numerofunc, nomed from Funcionario, Departamento
+where fk_Departamento_CODIGO = CODIGO
+group by nomed
+
